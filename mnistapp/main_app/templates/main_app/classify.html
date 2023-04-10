@@ -1,0 +1,21 @@
+
+{% extends "main_app/header.html" %}
+
+{% block content %}   
+
+{% load crispy_forms_tags %}
+<div class = "d-flex flex-column align-items-center">
+  <h1 class="text-center text-primary">Image Classification</h1>
+
+  <form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary mt-3">Classify Random Image</button>
+  </form>
+
+  {% if image %}
+    <h2 class = "text-center text-primary">Prediction:</h2>
+    <h4 class="text-primary">{{ prediction }}</h4>
+    <img src="data:image/png;base64,{{ image }}" alt="MNIST_image" class="img-fluid rounded">
+  {% endif %}
+</div>
+{% endblock %}
